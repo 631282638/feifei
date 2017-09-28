@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shuixiaofei.dao.MenuMapper">
+	<resultMap id="MenuResultMap" type="com.shuixiaofei.entity.MenuInfo">
+		 <id column="m_id" property="m_id"  />
+		<result column="p_id" property="p_id" />
+		<result column="m_title" property="m_title" />
+		<result column="m_url" property="m_url"  />
+		<result column="m_sort" property="m_sort"  />
+		<result column="m_icon" property="m_icon" />	
+		<result column="m_code" property="m_code" />
+		<result column="is_userful" property="is_userful" />
+	</resultMap>
+	<!--查询所有菜单  -->
+	<select id="getAllMenuInfo" resultMap="MenuResultMap">
+	select 
+	
+	m.m_id,m.p_id,m.m_title,m.m_url,m.m_sort,m.m_icon,m.m_code
+	  
+	from cool_menu m  where  m.is_userful=1 order by m.m_sort 
+	
+	</select>
+	<!--用户登录获取信息  -->
+	<select  id="getMenuForUser" resultMap="MenuResultMap"
+		parameterType="java.lang.String">
+		
+	select 
+	
+	m.m_id,m.p_id,m.m_title,m.m_url,m.m_sort,m.m_icon,m.m_code
+	  
+	from cool_menu m  where m.p_id=#{p_id} and m.is_userful=1 order by m.m_sort 
+	   
+	</select>
+	<!--获取菜单信息  -->
+	<select id="getMenuInfo" resultMap="MenuResultMap"
+		parameterType="java.lang.String">
+	
+	select 
+	
+	 m.m_id,m.p_id,m.m_title,m.m_url,m.m_sort,m.m_icon,m.m_code,CASE m.is_userful WHEN 1 then '可用' ELSE '不可用' end as is_userful
+	  
+	from cool_menu m  where m.p_id=#{p_id} order by m.m_sort 
+	<!-- and m.is_userful=1   -->
+
+	</select>
+	<!--获取当前最大的mcode  -->
+	 <select id="getMaxMcode" resultMap="MenuResultMap">
+	select max(m_code)+1 as m_code,m_title from cool_menu 
+	</select> 
+	<!--添加一级菜单  -->
+	<insert id="addFirstMenu" parameterType="com.shuixiaofei.entity.MenuInfo">
+	
+	insert into cool_menu
+	
+	 (p_id,m_title,m_url,m_sort,m_icon,create_time,update_time,is_userful,m_code) 
+	 
+	values(0,#{m_title},0,#{m_sort},#{m_icon},SYSDATE(),SYSDATE(),1,#{m_code})
+	
+	</insert>
+	<!--修改二级菜单  -->
+	<update id="updateSecondMenuInfo" parameterType="com.shuixiaofei.entity.MenuInfo">
+	update cool_menu set m_title=#{m_title},m_url = #{m_url},m_icon=#{m_icon},is_userful=#{is_userful}
+	where m_id = #{m_id}
+	</update>
+	<!--添加二级菜单  -->
+	<insert id="addSecondMenuInfo" parameterType="com.shuixiaofei.entity.MenuInfo">
+	
+	insert into cool_menu
+	
+	 (p_id,m_title,m_url,m_sort,m_icon,create_time,update_time,is_userful,m_code) 
+	 
+	values(#{p_id},#{m_title},#{m_url},#{m_sort},#{m_icon},SYSDATE(),SYSDATE(),1,#{m_code})
+	
+	</insert>
+	<!--查询最大排序 -->
+	<select id="getMaxMSortBPid" parameterType="java.lang.String" resultMap="MenuResultMap">
+	select MAX(m_sort)+1  as m_sort from cool_menu m where m.p_id=#{p_id}
+
+	</select>
+	
+	<!--一级菜单修改  -->
+	 <update id="updateFirstMenuUnUse" parameterType="com.shuixiaofei.entity.MenuInfo">
+		 update cool_menu set is_userful=#{is_userful} , m_title=#{m_title}
+		,m_icon=#{m_icon}
+  		where m_id=#{m_id}  ;
+	</update>
+	
+	
+	
+</mapper>

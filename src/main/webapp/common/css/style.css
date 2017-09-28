@@ -1,0 +1,185 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	
+}
+
+	.linyipost_panel{position:relative;top:0px;width: 100%;height:100%;border:solid  #C8B9AE 0px;
+/* 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+ */	background-color: white;margin-left: auto;margin-right: auto;
+ 
+ }
+	.linyipost_toolbar{top:0px;height:70px;background-color: white;border-bottom:solid #0a624b 4px;width: auto;border-radius: 7px;}
+	.linyipost_title{width:100%;height: 100%; border-collapse: collapse;}
+ 	.linyipost_logobg_cs{width: 15%; 
+/* 
+    background: -webkit-linear-gradient(#0a624b,#3CB371); 
+  	background: -o-linear-gradient(#0a624b,#3CB371); 
+ 	background: -moz-linear-gradient(#0a624b,#3CB371); 
+ 	background: linear-gradient(#0a624b,#3CB371);  */
+ 	background:#0a624b;
+ 	text-align: center;
+ 	font-size: 28px;
+ 	color: white;
+	
+ 	}
+ 	 .linyipost_icon_css{width: 10%;}
+ 	.linyi_post_title_css{width: 45%;text-align: center;font-size: 28px;color:#6c6c6c;font-weight:400;font-style: oblique;}
+	.linyipost_user_css{width: 35%;text-align: center;font-size: 16px;color: #A52A2A;}
+ 	.linyipost_user_logout{text-align: center;font-size: 16px;color: #A52A2A;cursor:pointer;}
+ 	.linyipost_inco_ct{position: relative;top:5%;left:20%;width: 20%;height: 30%;text-align: center;font-size: 25;color: #0a624b;cursor:pointer;}
+	
+	.linyipost_left_menu{position: relative;width: 15%;background-color: white;float: left; }
+	.linyipost_content{position: relative;width: 85%;height:90%;background-color:#DCDCDC;float: left;} 
+	.content_css{display: block;width: 100%;height: 100%;padding: 6px;}
+/* 	.first_page{display:block;width: 100%;height: 100%;padding: 10px;}
+ */
+   .linyipost_logobg_cs table td{
+      text-align: left;
+      line-height:24px;
+      color:#fff;
+      font-size:18px;
+   }
+
+/*  body {
+	background: #2d2c41;
+	font-family: "楷体";
+	color:#282828;
+} 
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	color: #b63b4d;
+	text-decoration: none;
+}
+
+/** =======================
+ * Contenedor Principal
+ ===========================*/
+/* h1 {
+ 	color: #FFF;
+ 	font-size: 24px;
+ 	font-weight: 400;
+ 	text-align: center;
+ 	margin-top: 80px;
+ }
+
+h1 a {
+ 	color: #c12c42;
+ 	font-size: 16px;
+ } */
+
+ .accordion {
+ 	width: 100%;	
+ 	margin: 1px auto 20px;
+ 	background: white;
+ 	-webkit-border-radius: 4px;
+ 	-moz-border-radius: 4px;
+ 	border-radius: 4px;
+ }
+
+  .accordion li i.op {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+    
+.accordion .link {
+	cursor: pointer;
+	display: block;
+	padding: 2px 15px 5px 42px;
+	color: #4D4D4D;
+	font-size: 16px;
+	font-weight: 500;
+	border-bottom: 1px solid #CCC;
+	position: relative;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	height:34px;
+}
+.accordion li:last-child .link {
+	border-bottom: 0;
+}
+.accordion li i {
+	position: absolute;
+	top: 6px;
+	left: 12px;
+	font-size: 16px;
+	color: #595959;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.accordion li i.fa-chevron-down {
+	right: 12px;
+	left: auto;
+	font-size: 12px;
+}
+
+.accordion li.open .link {
+	color: #b63b4d;
+}
+
+.accordion li.open i {
+	 color: #b63b4d; 
+}
+.accordion li.open i.fa-chevron-down {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+/**
+ * Submenu
+ -----------------------------*/
+ .submenu {
+ 	display: none;
+/*  	background: #444359;
+ */ 	
+ 	background-color: #DCDCDC ;
+    font-size: 14px;
+ }
+
+ .submenu li {
+ 	border-bottom: dashed 1px gray;
+ }
+
+.submenu li i{
+	position: absolute;
+	top: 16px;
+	left: 12px;
+	font-size: 16px;
+	color: #595959;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+ .submenu a {
+ 	display: block;
+ 	text-decoration: none;
+ 	color: 	#2F4F4F;
+ 	padding: 5px;
+ 	cursor:pointer;
+ 	padding-left: 42px;
+ 	font-size:16px;
+ 	-webkit-transition: all 0.25s ease;
+ 	-o-transition: all 0.25s ease;
+ 	transition: all 0.25s ease;
+ }
+
+ .submenu a:hover {
+ 	background: #cb4a5d; 
+ 	color: #FFF;
+ }
+ 
+

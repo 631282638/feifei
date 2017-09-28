@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shuixiaofei.dao.AccountMapper">
+	<!-- 查询所有账号列表  -->
+	<select id="getUserAccountListInfo"   resultType="java.util.HashMap" parameterType="com.shuixiaofei.entity.UserAccount">
+	
+<!--  	select u.user_id,u.user_name,u.user_account,u.power,u.`code`,u.is_userful,u.is_lock  from cool_user u
+ -->
+ 	select u.user_id,u.user_name,u.user_account,u.power,u.`code`,case u.is_userful WHEN 1 THEN '可用' ELSE
+	'不可用' END as is_userful,
+	case u.is_lock WHEN 1 THEN '锁定' ELSE '未锁定' END as is_lock  from cool_user u
+
+ 	 
+ 	
+	</select>
+	<!--账号解锁  -->
+	<update id="updateUserAccountUnLock" parameterType="com.shuixiaofei.entity.UserAccount">
+		update cool_user set is_lock=1 where user_account=#{user_account}
+	</update>
+	<!--修改账户信息  -->
+	<update id="updateUserAccountInfo" parameterType="com.shuixiaofei.entity.UserAccount">
+	
+	update cool_user set user_name=#{user_name},code=#{code},is_userful=#{is_userful},is_lock=#{is_lock}
+
+	where user_account = #{user_account}
+	
+	</update>	
+	<!--修账号密码  -->
+	<update id="updateUserAccountPwd" parameterType="com.shuixiaofei.entity.UserAccount">
+	
+	</update>
+	<!--添加用户账号  -->
+	<insert id="addUserAccount" parameterType="com.shuixiaofei.entity.UserAccount" >
+	  insert into cool_user
+	  
+	 (user_id,employee_id,user_name,user_account,user_pwd,power,code,create_time,is_userful,is_lock)
+	 
+	 VALUES (#{user_id},'',#{user_name},#{user_account},#{user_pwd},#{power},#{code},SYSDATE(),1,0)
+	
+	</insert>
+	<!--查询账号是否存在  -->
+	<select id="getAccountIsExit" parameterType="java.lang.String" resultType="java.util.HashMap">
+	select COUNT(*) as num from cool_user where user_account = #{uaccount}
+	</select>
+	
+	<!--修改账号权限  -->
+	<update id="updateUserPower" parameterType="com.shuixiaofei.entity.QueryModel">
+	update cool_user set power=#{param2} where user_account= #{param1}
+	</update>
+	
+	
+</mapper>

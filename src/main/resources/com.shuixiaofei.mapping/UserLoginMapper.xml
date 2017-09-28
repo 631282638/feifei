@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shuixiaofei.dao.UserLoginMapper">
+	
+	<!-- 用户登录校验数据 -->
+	<select id="getUserInfo" resultType="java.util.HashMap" parameterType="java.lang.String">
+
+		select  u.user_id,u.employee_id,u.user_name,u.user_pwd,u.power,u.code 
+		, u.is_lock
+		 from 
+		 
+		 cool_user u 
+		 
+		 where u.user_account=#{user_account} and u.is_userful=1 ;
+
+	</select>
+	<!--查询登录次数  -->
+	<select id="getTryedNum" resultType="java.util.HashMap" parameterType="java.lang.String">
+	
+		select l.try_num from cool_user_lock l where l.user_account =#{user_account};
+		
+	</select>	
+	<!--更新登录次数 -->
+	<update id="updateTryedNum"  parameterType="java.lang.String">
+		update cool_user_lock set try_num=try_num+1 where user_account=#{user_account}
+	</update>
+	<!--登录成功改为零  -->
+	<update id="updateTryedNumToZero"  parameterType="java.lang.String">
+		update cool_user_lock set try_num=0 where user_account=#{user_account}
+	</update>
+	
+<!-- 	<update id="">
+	
+	 update cool_user set is_lock = 0 
+	
+	</update>
+	 -->
+</mapper>
+
